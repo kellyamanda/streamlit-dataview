@@ -82,19 +82,29 @@ else:
     t0 = datasets.event_gps(chosen_event)
     detectorlist = list(datasets.event_detectors(chosen_event))
     detectorlist.sort()
-    st.subheader(chosen_event)
-    st.write('GPS:', t0)
+    
+    st.subheader('Event ', chosen_event)
+    
+    r1, r2, r3 = st.beta_columns(3)
+    r4, r5 = st.beta_columns((1,2))
+    with r1:
+        st.write('GPS:', t0)
     
     # -- Experiment to display masses
     try:
         jsoninfo = fetch_event_json(chosen_event)
-        for name, nameinfo in jsoninfo['events'].items():        
-            st.write('Mass 1:', nameinfo['mass_1_source'], 'M$_{\odot}$')
-            st.write('Mass 2:', nameinfo['mass_2_source'], 'M$_{\odot}$')
+        for name, nameinfo in jsoninfo['events'].items():
+            
+            with r2:
+                st.write('Mass 1:', nameinfo['mass_1_source'], 'M$_{\odot}$')
+            with r3:
+                st.write('Mass 2:', nameinfo['mass_2_source'], 'M$_{\odot}$')
             #st.write('Distance:', int(nameinfo['luminosity_distance']), 'Mpc')
-            st.write('Network SNR:', int(nameinfo['network_matched_filter_snr']))
+            with r4:
+                st.write('Network SNR:', int(nameinfo['network_matched_filter_snr']))
             eventurl = 'https://gw-osc.org/eventapi/html/event/{}'.format(chosen_event)
-            st.markdown('Event page: {}'.format(eventurl))
+            with r5:
+                st.markdown('Event page: {}'.format(eventurl))
             st.write('\n')
     except:
         pass
