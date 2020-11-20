@@ -85,8 +85,7 @@ else:
     
     st.write('## Event ', chosen_event)
     
-    r1, r2, r3 = st.beta_columns(3)
-    r4, r5 = st.beta_columns((1,2))
+    r1, r2, r3, r4 = st.beta_columns(4)
     with r1:
         st.write('GPS:', t0)
     
@@ -103,8 +102,7 @@ else:
             with r4:
                 st.write('Network SNR:', int(nameinfo['network_matched_filter_snr']))
             eventurl = 'https://gw-osc.org/eventapi/html/event/{}'.format(chosen_event)
-            with r5:
-                st.markdown('Event page: {}'.format(eventurl))
+            st.markdown('Event page: {}'.format(eventurl))
             st.write('\n')
     except:
         pass
