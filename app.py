@@ -83,7 +83,7 @@ else:
     detectorlist = list(datasets.event_detectors(chosen_event))
     detectorlist.sort()
     
-    st.subheader('Event ', chosen_event)
+    st.write('## Event ', chosen_event)
     
     r1, r2, r3 = st.beta_columns(3)
     r4, r5 = st.beta_columns((1,2))
